@@ -11,6 +11,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import SacolaBtn from "./BagButton";
+import useViewport from "../store/Viewport";
 
 const menuButtonsStyles = {
   flexDirection: "column",
@@ -22,14 +23,14 @@ const menuButtonsStyles = {
 function Footer() {
   const profileCtx = useContext(ProfileContext);
   const pathname = useLocation().pathname;
-
+  const isLarge = useViewport();
   const clickHandler = function () {
     profileCtx.modalHandler(false);
   };
 
   return (
     <FooterMobStyles>
-      <SacolaBtn />
+      {!isLarge && <SacolaBtn />}
       <div className="footer-button-group" sx={{ backgroundColor: "#f2f2f2" }}>
         <Link to="/">
           <Button
