@@ -1,12 +1,19 @@
 import { create } from "zustand";
 
 const useModalStore = create((set) => ({
-  component: "bag",
-  state: false,
+  bag: false,
+  bagHandler: () =>
+    set((state) => {
+      return Object.assign(state, { bag: !state.bag });
+    }),
+  profile: false,
+  openProfile: () =>
+    set((state) => {
+      return Object.assign(state, { profile: !state.profile });
+    }),
 }));
 
 export default function useModal(value) {
-  //   const matches = useMediaQuery("(min-width:960px)");
-  useModalStore((state) => state.isBagActive);
-  return value;
+  const modals = useModalStore();
+  return modals;
 }

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { ProfileContainer } from "../styles/profile-styles";
+import { ProfileContainer } from "../styles/profile";
 import { ProfileContext } from "../store/ModalContext";
-import { ButtonGroup, Button, IconButton } from "@mui/material";
+import { ButtonGroup, Button } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import LoginIcon from "@mui/icons-material/Login";
 import FavoriteIcon from "@mui/icons-material/Favorite";

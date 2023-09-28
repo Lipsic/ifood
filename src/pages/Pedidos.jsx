@@ -1,5 +1,5 @@
 import React from "react";
-import BagContent from "../components/BagContent";
+import OrdersContent from "../components/OrdersContent";
 import { OrdersPageWrapper } from "../styles/OrdersPage";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import SectionHeader from "../UI/SectionHeader";
@@ -11,7 +11,7 @@ function Pedidos() {
         icon={<ArrowBackIosNew />}
         title="PEDIDOS"
       />
-      <BagContent />
+      <OrdersContent />
     </OrdersPageWrapper>
   );
 }

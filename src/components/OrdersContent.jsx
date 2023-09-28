@@ -3,7 +3,7 @@ import panelas from "../assets/panelas.svg";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-function BagContent({ hasContent }) {
+function OrdersContent({ hasContent }) {
   return (
     <>
       <div className="no-orders-image">
@@ -22,4 +22,4 @@ function BagContent({ hasContent }) {
   );
 }
 
-export default BagContent;
+export default OrdersContent;

@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import { Outlet } from "react-router";
 import GlobalStyles from "../styles/Globals";
 import { createPortal } from "react-dom";
-import Profile from "../containers/Perfil";
+import Profile from "../containers/Profile";
 import { ModalContextProvider } from "../store/ModalContext";
 import { AnimatePresence } from "framer-motion";
 import Bag from "../containers/Sacola";
@@ -20,17 +20,15 @@ function RootLayout() {
   const isLarge = useViewport();
   return (
     <>
-      <Outlet />
-      {!isLarge && (
+      <ModalContextProvider>
+        <Outlet />
+        {bagModal}
+        {profileModal}
         <AnimatePresence mode="wait">
-          <ModalContextProvider>
-            {profileModal}
-            {bagModal}
-            <Footer />
-          </ModalContextProvider>
+          {!isLarge && <Footer />}
         </AnimatePresence>
-      )}
-      <GlobalStyles />
+        <GlobalStyles />
+      </ModalContextProvider>
     </>
   );
 }
