@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import { useContext } from "react";
 import { FooterMobStyles } from "../styles//mobile/FooterMobile";
 import { Link, useLocation } from "react-router-dom";
 import { ProfileContext } from "../store/ModalContext";
@@ -31,7 +31,10 @@ function Footer() {
   return (
     <FooterMobStyles>
       {!isLarge && <SacolaBtn />}
-      <div className="footer-button-group" sx={{ backgroundColor: "#f2f2f2" }}>
+      <div
+        className="footer-button-group"
+        style={{ backgroundColor: "#f2f2f2" }}
+      >
         <Link to="/">
           <Button
             fullWidth

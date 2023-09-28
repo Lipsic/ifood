@@ -16,5 +16,13 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'prettier/prettier': 'error',
+    'spaced-comment': 'off',
+    'func-names': 'off',
+    'no-console': 'warn',
+    'consistent-return': 'true',
+    'object-shorthand':'off',
+    'no-return-await': 'off',
+
   },
 }

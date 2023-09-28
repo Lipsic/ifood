@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { HeaderStyles } from "../styles/Header";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Grid, Typography, IconButton, Toolbar } from "@mui/material";
@@ -12,9 +11,6 @@ import useViewport from "../store/Viewport";
 
 function Header() {
   const isLarge = useViewport();
-  useEffect(() => {
-    console.log("Header component was rendered");
-  });
   const mobile = (
     <Grid
       className="container__header"

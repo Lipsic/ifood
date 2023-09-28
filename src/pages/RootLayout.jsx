@@ -1,33 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import Footer from "../components/Footer";
 import { Outlet } from "react-router";
 import GlobalStyles from "../styles/Globals";
 import { createPortal } from "react-dom";
-import Perfil from "../containers/Perfil";
+import Profile from "../containers/Perfil";
 import { ModalContextProvider } from "../store/ModalContext";
 import { AnimatePresence } from "framer-motion";
-import Sacola from "../containers/Sacola";
+import Bag from "../containers/Sacola";
+import useViewport from "../store/Viewport";
 
 function RootLayout() {
-  const sacolaModal = createPortal(
-    <Sacola />,
+  const bagModal = createPortal(<Bag />, document.getElementById("modal"));
+
+  const profileModal = createPortal(
+    <Profile />,
     document.getElementById("modal")
   );
 
-  const profileModal = createPortal(
-    <Perfil />,
-    document.getElementById("modal")
-  );
+  const isLarge = useViewport();
   return (
     <>
       <Outlet />
-      <AnimatePresence mode="wait">
-        <ModalContextProvider>
-          {profileModal}
-          {sacolaModal}
-          <Footer />
-        </ModalContextProvider>
-      </AnimatePresence>
+      {!isLarge && (
+        <AnimatePresence mode="wait">
+          <ModalContextProvider>
+            {profileModal}
+            {bagModal}
+            <Footer />
+          </ModalContextProvider>
+        </AnimatePresence>
+      )}
       <GlobalStyles />
     </>
   );
