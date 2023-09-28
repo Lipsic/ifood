@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
 import { Box, IconButton, Typography } from "@mui/material";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
-import { ProfileContext } from "../store/ModalContext";
+import useModal from "../store/Modals";
 
 function MobSacolaButton() {
-  const sacolaCtx = useContext(ProfileContext);
-  const clickHandler = function () {
-    sacolaCtx.modalSacolaHandler(true);
+  const active = false;
+  const { isBagActive, setBag } = useModal(active);
+  console.log("useModal", isBagActive);
+  const clickHandler = function() {
+    active === true;
+    setBag(true);
   };
   return (
     <IconButton
