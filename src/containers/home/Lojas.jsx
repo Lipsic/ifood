@@ -57,7 +57,20 @@ const DUMMY_DATA = [
   },
 ];
 import { LojasStyles } from "../../styles/home/Lojas";
+import { useState } from "react";
+import { useEffect } from "react";
 function Lojas() {
+  const [restaurants, setRestaurants] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const res = await fetch("https://restaurant-api.dicoding.dev/list", {
+        method: "GET",
+      });
+      const restaus = await res.json();
+      setRestaurants(restaus.restaurants);
+    })();
+  }, []);
+
   return (
     <LojasStyles>
       <Container>
@@ -68,10 +81,10 @@ function Lojas() {
           justifyContent="center"
           sx={{ paddingBottom: "5em" }}
         >
-          {DUMMY_DATA.map((loja) => {
+          {restaurants.map((loja) => {
             return (
               <Grid
-                key={loja.nome}
+                key={loja.id}
                 className="merchant-v2"
                 item
                 xs={12}
@@ -89,20 +102,20 @@ function Lojas() {
                       maxWidth: "100px",
                       backgroundSize: "contain",
                     }}
-                    image={loja.logo}
+                    image={chapaQuente}
                     title="olá"
                   />
                   <CardContent>
                     <Container>
-                      <Typography>{loja.nome}</Typography>
+                      <Typography>{loja.name}</Typography>
                       <Grid container direction="row" gap={1}>
                         <Typography>⭐{loja.rating}</Typography>
-                        <Typography>{loja.tipo}</Typography>
+                        <Typography>{loja.city}</Typography>
                         <Typography>1,9km</Typography>
                       </Grid>
                       <Grid container direction="row" gap={1}>
-                        <Typography>{loja.tempo}min</Typography>
-                        <Typography>{loja.media}</Typography>
+                        <Typography>{loja.rating}min</Typography>
+                        <Typography>{loja.rating}</Typography>
                       </Grid>
                     </Container>
                   </CardContent>
