@@ -7,6 +7,8 @@ import Busca from "./pages/Busca";
 import Pedidos from "./pages/Pedidos";
 import ErrorPage from "./pages/ErrorPage";
 import SignIn from "./pages/SignIn";
+import Restaurante from "./pages/Restaurante";
+import { loader as restaurantLoader } from "./pages/Restaurante";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +29,11 @@ function App() {
         {
           path: "/pedidos",
           element: <Pedidos />,
+        },
+        {
+          path: "/restaurantes/:id",
+          element: <Restaurante />,
+          loader: restaurantLoader,
         },
       ],
     },
