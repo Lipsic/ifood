@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import chapaQuente from "../../assets/lojas/chapa-quente.avif";
 
 import {
   Container,
