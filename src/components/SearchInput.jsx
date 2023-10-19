@@ -1,12 +1,11 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import SearchIcon from "@mui/icons-material/Search";
 import { BuscaStyles } from "../styles/Busca";
-import { useState } from "react";
-import { useEffect } from "react";
-import { Popper, List, ListItem } from "@mui/material";
+import { Popper, List, ListItem, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { color } from "framer-motion";
 
 export default function SearchAppBar() {
   const [input, setInput] = useState("");
@@ -68,15 +67,40 @@ export default function SearchAppBar() {
                   open={true}
                   placement="bottom"
                   anchorEl={anchorEl}
+                  sx={{ zIndex: "1000", width: "40%", justifyItems: "center" }}
+                  disablePortal
                 >
-                  <List>
+                  <List
+                    className="search-list"
+                    sx={{
+                      backgroundColor: "rgba(0, 0, 0, 0.8)",
+                      color: "white",
+                      minWidth: "300px",
+                      width: "90%",
+                      margin: "0 auto",
+                    }}
+                  >
                     {matches.restaurants.map((el) => (
                       <Link
                         to={`/restaurantes/${el.id}`}
-                        style={{ width: "100%", height: "100%" }}
+                        style={{
+                          width: "100%",
+                        }}
                         key={el.id}
                       >
-                        <ListItem disablePadding>{el.name}</ListItem>
+                        <ListItem
+                          disablePadding
+                          sx={{
+                            textAlign: "center",
+                            width: "100%",
+                            color: "white",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <Typography textAlign="center" width="100%">
+                            {el.name}
+                          </Typography>
+                        </ListItem>
                       </Link>
                     ))}
                   </List>

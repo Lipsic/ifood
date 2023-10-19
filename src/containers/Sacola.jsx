@@ -27,6 +27,7 @@ function Sacola() {
   const exitAnimation = isLarge
     ? { opacity: 0.7, x: 600 }
     : { opacity: 0.7, y: 1000 };
+
   return (
     <>
       <AnimatePresence mode="wait">
@@ -52,7 +53,7 @@ function Sacola() {
                   isLarge ? <EastTwoToneIcon /> : <ArrowDownwardTwoToneIcon />
                 }
               />
-              <Container>
+              <Container sx={{ maxHeight: "100vh", paddingBottom: "200px" }}>
                 {isDelivery ? "Entrega" : "Retirada"}
 
                 <Local />
@@ -63,6 +64,19 @@ function Sacola() {
           </ModalCotainer>
         )}
       </AnimatePresence>
+      {sacolaCtx.isSacolaActive && (
+        <div
+          style={{
+            width: "100%",
+            bottom: "0",
+            top: "0",
+            backgroundColor: "rgba(0,0,0,0.4)",
+            zIndex: "800",
+            position: "fixed",
+          }}
+          onClick={closeHandler}
+        ></div>
+      )}
     </>
   );
 }

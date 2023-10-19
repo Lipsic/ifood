@@ -32,4 +32,10 @@ export const BuscaStyles = styled.div`
     padding: 0.5rem;
     opacity: 1;
   }
+  .search-list {
+    background-color: rgba(0, 0, 0, 0.7);
+    &a:active {
+      color: white;
+    }
+  }
 `;

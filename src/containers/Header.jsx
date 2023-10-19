@@ -11,7 +11,7 @@ import useViewport from "../store/Viewport";
 
 function Header() {
   const isLarge = useViewport();
-  const mobile = (
+  const mobileHeader = (
     <Grid
       className="container__header"
       container
@@ -43,7 +43,7 @@ function Header() {
       </Grid>
     </Grid>
   );
-  const desktop = (
+  const desktopHeader = (
     <Grid
       className="container__header"
       container
@@ -97,7 +97,7 @@ function Header() {
   );
   return (
     <HeaderStyles>
-      {isLarge ? desktop : mobile}
+      {isLarge ? desktopHeader : mobileHeader}
       <AnimatePresence>
         <CategorySelector />
       </AnimatePresence>
