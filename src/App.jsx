@@ -9,7 +9,8 @@ import ErrorPage from "./pages/ErrorPage";
 import SignIn from "./pages/SignIn";
 import Restaurante from "./pages/Restaurante";
 import { loader as restaurantLoader } from "./pages/Restaurante";
-
+import { QueryClient, QueryClientProvider } from "react-query";
+const queryClient = new QueryClient();
 function App() {
   const router = createBrowserRouter([
     {
@@ -44,7 +45,11 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />;
+    </QueryClientProvider>
+  );
 }
 
 export default App;

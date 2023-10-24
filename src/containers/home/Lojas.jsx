@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import {
   Container,
   Grid,
@@ -9,22 +8,33 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-
 import { LojasStyles } from "../../styles/home/Lojas";
-import { useState } from "react";
-import { useEffect } from "react";
+import axiosClient from "../../utils/http";
+import useRequestProcessor from "../../hooks/useQuery";
 function Lojas() {
-  const [restaurants, setRestaurants] = useState([]);
-  useEffect(() => {
-    (async () => {
-      const res = await fetch("https://restaurant-api.dicoding.dev/list", {
-        method: "GET",
-      });
-      const restaus = await res.json();
-      setRestaurants(restaus.restaurants);
-    })();
-  }, []);
+  const { query } = useRequestProcessor();
 
+  const { data: restaurants, isLoading, isError } = query(
+    "restaurants",
+    () => axiosClient.get("/list").then((res) => res.data),
+    { enabled: true }
+  );
+
+  if (isLoading) {
+    return (
+      <Container>
+        <Typography>Loading...</Typography>
+      </Container>
+    );
+  }
+  if (isError) {
+    return (
+      <Container>
+        <Typography>Sorry 😢! Somenthing went wrong. Try it later!</Typography>
+      </Container>
+    );
+  }
+  console.log("restaurants", restaurants);
   return (
     <LojasStyles>
       <Container>
@@ -35,7 +45,7 @@ function Lojas() {
           justifyContent="center"
           sx={{ paddingBottom: "5em" }}
         >
-          {restaurants.map((loja) => {
+          {restaurants?.restaurants.map((loja) => {
             return (
               <Grid
                 key={loja.id}
@@ -48,7 +58,7 @@ function Lojas() {
                 xl={3}
               >
                 <Link to={`restaurantes/${loja.id}`}>
-                  <Card sx={{ display: "flex" }}>
+                  <Card sx={{ display: "flex", height: "100%" }}>
                     <CardMedia
                       className="logo-loja"
                       sx={{
@@ -86,42 +96,3 @@ function Lojas() {
 }
 
 export default Lojas;
-
-// const DUMMY_DATA = [
-//   {
-//     nome: "Chapa Quente",
-//     logo: chapaQuente,
-//     tipo: "padaria",
-//     rating: 10,
-//     local: 123456789,
-//     media: 5.99,
-//     tempo: 5 * 60,
-//     id() {
-//       return this.nome.toLowerCase().replace(/\s/g, "");
-//     },
-//   },
-//   {
-//     nome: "Empório Café",
-//     logo: emprorioCafe,
-//     tipo: "padaria",
-//     rating: 9,
-//     local: 123456789,
-//     media: 5.99,
-//     tempo: 5 * 60,
-//     id() {
-//       return this.nome.toLowerCase().replace(/\s/g, "");
-//     },
-//   },
-//   {
-//     nome: "Frosty",
-//     logo: frosty,
-//     tipo: "lanchonete",
-//     rating: 8,
-//     local: 123456789,
-//     media: 5.99,
-//     tempo: 7 * 60,
-//     id() {
-//       return this.nome.toLowerCase().replace(/\s/g, "");
-//     },
-//   },
-// ];

@@ -8,7 +8,6 @@ import { ModalContextProvider } from "../store/ModalContext";
 import { AnimatePresence } from "framer-motion";
 import Bag from "../containers/Sacola";
 import useViewport from "../store/Viewport";
-import { ClickAwayListener } from "@mui/material";
 
 function RootLayout() {
   const bagModal = createPortal(<Bag />, document.getElementById("modal"));
@@ -19,7 +18,6 @@ function RootLayout() {
   );
 
   const isLarge = useViewport();
-
   return (
     <>
       <ModalContextProvider>
@@ -27,6 +25,7 @@ function RootLayout() {
         {bagModal}
         {profileModal}
         <AnimatePresence mode="wait">{!isLarge && <Footer />}</AnimatePresence>
+
         <GlobalStyles />
       </ModalContextProvider>
     </>
