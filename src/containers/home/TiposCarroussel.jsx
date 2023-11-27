@@ -4,7 +4,7 @@ import BannerCard from "../../UI/BannerCard";
 import primeira from "../../assets/tipos-carroussel/mercado.avif";
 import segunda from "../../assets/tipos-carroussel/brasileira.avif";
 import terceira from "../../assets/tipos-carroussel/bagcupones.avif";
-import quarta from "../../assets/tipos-carroussel/marmita.avif";
+import quarta from "../../assets/tipos-carroussel/Marmita.avif";
 import quinta from "../../assets/tipos-carroussel/padaria.avif";
 import sexta from "../../assets/tipos-carroussel/lanches.avif";
 
