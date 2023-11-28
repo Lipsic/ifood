@@ -3,8 +3,13 @@ import StoreCard from "../UI/StoreCard";
 import { Grid, Box, IconButton, Typography } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Wrapper } from "../styles/bag-items";
+import { readOnlyCart } from "../store/cart"; 
+import {useAtom} from 'jotai'
 // TODO: add, edit and remove items from the bag
+
 function BagItems() {
+  const [items] = useAtom(readOnlyCart)
+  
   return (
     <Wrapper>
       <StoreCard />
@@ -13,10 +18,10 @@ function BagItems() {
         <Grid item xs={8}>
           <div>titulo</div>
           <ul className="ingredients">
-            <li>1x Guaraná 600ml</li>
-            <li>1x Alho</li>
-            <li>1x Barbecue</li>
-            <li>1x Ervas</li>
+            {items.length === 1  && items[0]===''&& <p>No item was added yet!</p>}
+            {items.map(i=><p key={i}>
+              {i}
+            </p>)}
           </ul>
         </Grid>
         <Grid item xs={4}>

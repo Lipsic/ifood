@@ -34,7 +34,6 @@ function Lojas() {
       </Container>
     );
   }
-  console.log("restaurants", restaurants);
   return (
     <LojasStyles>
       <Container>

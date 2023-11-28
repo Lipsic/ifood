@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { Box, IconButton, Typography } from "@mui/material";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
-import useModal from "../store/Modals";
-import { useEffect } from "react";
 import { ProfileContext } from "../store/ModalContext";
+import {useAtom} from 'jotai';
+import { readOnlyCart } from "../store/cart";
+import { useEffect } from "react";
 
 function MobSacolaButton() {
   const sacolaCtx = useContext(ProfileContext);
-
+  const [items]=useAtom(readOnlyCart)
   const clickHandler = function () {
     sacolaCtx.modalSacolaHandler(true);
   };
@@ -28,7 +29,7 @@ function MobSacolaButton() {
           R$ 0,00
         </Typography>
         <Typography noWrap color="#717171" fontSize="0.9rem">
-          0 itens
+         {items.length === 1 && items[0] !== 'No item was added yet!'? items.length : 0}
         </Typography>
       </Box>
     </IconButton>
